@@ -4,7 +4,7 @@ from core.config import settings
 
 class GeminiService:
     def __init__(self):
-        api_key = settings.VERTEX_API_KEY or settings.GOOGLE_API_KEY
+        api_key = settings.GOOGLE_API_KEY
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel('gemini-2.5-flash')
 
