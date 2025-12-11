@@ -34,7 +34,7 @@ if production_frontend:
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # For development - restrict in production
-    allow_origin_regex="https://.*\.vercel\.app",  # Allow all Vercel subdomains
+    allow_origin_regex=r"https://.*\.vercel\.app",  # Allow all Vercel subdomains
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
