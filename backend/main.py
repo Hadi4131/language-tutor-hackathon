@@ -6,6 +6,7 @@ from database.mongo import db
 from api.conversation import router as conversation_router
 from api.gamification import router as gamification_router
 from api.personality import router as personality_router
+import os  
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
