@@ -10,3 +10,4 @@ motor>=3.6.0
 firebase-admin==6.6.0
 textblob==0.18.0.post0
 pydantic-settings==2.6.1
+python-multipart
