@@ -15,6 +15,7 @@ async def process_audio_conversation(
     file: UploadFile = File(...),
     personality: str = "friendly",
     user_level: str = "intermediate",
+    voice_id: str = None,
     user_id: str = None,  # Will be None for unauthenticated, populated by middleware if authenticated
     authorization: str = Header(None)
 ):
@@ -73,7 +74,12 @@ async def process_audio_conversation(
         ai_response_text = " ".join(filter(None, ai_response_parts))
         
         try:
-            audio_bytes = await elevenlabs_service.generate_audio(ai_response_text)
+            # Use provided voice_id or default logic handles it if None is passed
+            generate_args = {}
+            if voice_id:
+                generate_args["voice_id"] = voice_id
+                
+            audio_bytes = await elevenlabs_service.generate_audio(ai_response_text, **generate_args)
             audio_base64 = base64.b64encode(audio_bytes).decode('utf-8')
         except Exception as e:
             print(f"TTS Generation failed: {e}")

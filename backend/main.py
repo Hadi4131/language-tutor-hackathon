@@ -6,6 +6,7 @@ from database.mongo import db
 from api.conversation import router as conversation_router
 from api.gamification import router as gamification_router
 from api.personality import router as personality_router
+from api.voices import router as voice_router
 import os  
 
 @asynccontextmanager
@@ -45,6 +46,7 @@ app.add_middleware(
 app.include_router(conversation_router, prefix="/api/v1")
 app.include_router(gamification_router, prefix="/api/v1")
 app.include_router(personality_router, prefix="/api/v1")
+app.include_router(voice_router, prefix="/api/v1")
 
 @app.get("/")
 async def root():

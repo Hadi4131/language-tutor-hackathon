@@ -6,11 +6,13 @@ import { WelcomePage } from './components/WelcomePage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import VoiceInterface from './components/VoiceInterface';
+import VoiceSelector from './components/VoiceSelector';
 import { Mic, Sparkles, CheckCircle, Zap, Brain, Volume2, Home, HelpCircle, LogOut } from 'lucide-react';
 import { useAuth } from './contexts/AuthContext';
 
 function MainApp() {
     const [showAbout, setShowAbout] = useState(false);
+    const [selectedVoice, setSelectedVoice] = useState(null);
     const { logout, currentUser } = useAuth();
 
     const handleLogout = async () => {
@@ -138,15 +140,23 @@ function MainApp() {
                         </div>
                     ) : (
                         /* Practice Interface */
-                        <div className="animate-fadeIn">
+                        <div className="animate-fadeIn max-w-4xl mx-auto">
                             <div className="text-center mb-8">
                                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">Practice Speaking</h2>
                                 <p className="text-gray-200 text-lg">Click the microphone and speak naturally</p>
                             </div>
 
+                            <div className="mb-8 flex justify-start">
+                                <VoiceSelector
+                                    selectedVoice={selectedVoice}
+                                    onSelect={setSelectedVoice}
+                                />
+                            </div>
+
                             <VoiceInterface
                                 personality="friendly"
                                 userLevel="intermediate"
+                                voiceId={selectedVoice}
                             />
                         </div>
                     )}

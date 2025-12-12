@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Mic, MicOff, Loader2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
-const VoiceInterface = ({ personality = 'friendly', userLevel = 'intermediate' }) => {
+const VoiceInterface = ({ personality = 'friendly', userLevel = 'intermediate', voiceId }) => {
     const [isRecording, setIsRecording] = useState(false);
     const [transcript, setTranscript] = useState('');
     const [analysis, setAnalysis] = useState(null);
@@ -54,10 +54,18 @@ const VoiceInterface = ({ personality = 'friendly', userLevel = 'intermediate' }
             const token = await getIdToken();
 
             // Use environment variable for API URL (production) or fallback to relative path (development)
-            const apiUrl = import.meta.env.VITE_API_URL || '';
+            const apiUrl = import.meta.env.DEV
+                ? 'http://localhost:8000'
+                : (import.meta.env.VITE_API_URL || '');
+
+            // Construct URL with query parameters
+            let url = `${apiUrl}/api/v1/conversation/audio?personality=${personality}&user_level=${userLevel}`;
+            if (voiceId) {
+                url += `&voice_id=${voiceId}`;
+            }
 
             const response = await axios.post(
-                `${apiUrl}/api/v1/conversation/audio?personality=${personality}&user_level=${userLevel}`,
+                url,
                 formData,
                 {
                     headers: {
