@@ -1,6 +1,7 @@
-# 🗣️ AI Language Tutor
+# 🗣️ Echo: AI Language Tutor
+### 🚀 Built for the AI Partner Catalyst Hackathon
 
-An AI-powered English language learning application with real-time pronunciation feedback, grammar corrections, and personalized learning tips.
+An AI-powered English language learning application that combines **Google Cloud Vertex AI** for intelligence and **ElevenLabs** for human-quality voice interaction. It features real-time pronunciation feedback, grammar corrections, and adaptive learning paths.
 
 ## ✨ Features
 
