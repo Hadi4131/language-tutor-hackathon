@@ -163,4 +163,4 @@ For issues or questions, please open an issue on GitHub.
 
 ---
 
-**Built for the Google AI Hackathon 2024** 🚀
+**Built for the Google AI Hackathon 2025** 🚀
